@@ -4,6 +4,7 @@ cd lede
 
 (
     cd package
+    rm -rf luci-theme-argon
     git clone https://github.com/tuanqing/install-program
     # git clone https://github.com/tuanqing/openwrt-mentohust
     # git clone https://github.com/tuanqing/luci-app-mentohust
@@ -11,6 +12,17 @@ cd lede
     # git clone https://github.com/jerrykuku/luci-app-ttnode
     git clone https://github.com/jerrykuku/luci-theme-argon -b 18.06
     git clone https://github.com/jerrykuku/luci-app-argon-config
+    git clone https://github.com/vernesong/OpenClash.git
+    git clone https://github.com/sirpdboy/luci-app-advanced.git
+    git clone https://github.com/esirplayground/luci-app-poweroff.git
+    git clone https://github.com/sirpdboy/luci-app-autotimeset.git
+    git clone https://github.com/rosywrt/luci-theme-rosy.git
+    git clone -b 18.06 https://github.com/kiddin9/luci-theme-edge.git
+    git clone https://github.com/sirpdboy/luci-theme-opentopd.git
+    svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_new
+    svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-opentomato
+    svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-opentomcat
+    git clone https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git
 #     git clone https://github.com/lisaac/luci-lib-docker
 #     git clone https://github.com/lisaac/luci-app-dockerman
 
@@ -70,7 +82,7 @@ sed -i '/PKG_SOURCE_VERSION:=/d' package/lean/shadowsocksr-libev/Makefile
 sed -i '/PKG_SOURCE_URL/a PKG_SOURCE_VERSION:=4799b312b8244ec067b8ae9ba4b85c877858976c' \
     package/lean/shadowsocksr-libev/Makefile
 
-# sed -i 's/ipaddr:-"192.168.1.1"/ipaddr:-"192.168.1.10"/' package/base-files/files/bin/config_generate
+sed -i 's/ipaddr:-"192.168.1.1"/ipaddr:-"192.168.1.2"/' package/base-files/files/bin/config_generate
 
 cat >.config <<-EOF
 ## target
@@ -78,22 +90,49 @@ CONFIG_TARGET_armvirt=y
 CONFIG_TARGET_armvirt_64=y
 CONFIG_TARGET_armvirt_64_Default=y
 ## luci app
-CONFIG_PACKAGE_luci-app-adbyby-plus=y
-CONFIG_PACKAGE_luci-app-aria2=y
-CONFIG_PACKAGE_luci-app-cifs-mount=y
+# CONFIG_PACKAGE_luci-app-adbyby-plus=y
+# CONFIG_PACKAGE_luci-app-aria2=y
+# CONFIG_PACKAGE_luci-app-cifs-mount=y
+CONFIG_PACKAGE_luci-app-advanced=y
+CONFIG_PACKAGE_luci-app-argon-config=y
+CONFIG_PACKAGE_luci-app-autotimeset=y
+CONFIG_PACKAGE_luci-app-diskman=y
+CONFIG_PACKAGE_luci-app-frpc=y
+CONFIG_PACKAGE_luci-app-frps=y
+CONFIG_PACKAGE_luci-app-hd-idle=y
+CONFIG_PACKAGE_luci-app-jd-dailybonus=y
+CONFIG_PACKAGE_luci-app-netdata=y
+CONFIG_PACKAGE_luci-app-openclash=y
+CONFIG_PACKAGE_luci-app-poweroff=y
 CONFIG_PACKAGE_luci-app-samba4=y
 CONFIG_PACKAGE_luci-app-ttyd=y
+CONFIG_PACKAGE_luci-app-wrtbwmon=y
+CONFIG_PACKAGE_luci-app-zerotier=y
 # CONFIG_PACKAGE_luci-app-mentohust=y
 # CONFIG_PACKAGE_luci-app-jd-dailybonus=y
 # CONFIG_PACKAGE_luci-app-ttnode=y
 # CONFIG_PACKAGE_luci-app-dockerman=y
-CONFIG_PACKAGE_luci-app-argon-config=y
 ## luci theme
 CONFIG_PACKAGE_luci-theme-bootstrap-mod=y
 CONFIG_PACKAGE_luci-theme-argon=y
+CONFIG_PACKAGE_luci-theme-atmaterial_new=y
+CONFIG_PACKAGE_luci-theme-edge=y
+CONFIG_PACKAGE_luci-theme-infinityfreedom=y
+CONFIG_PACKAGE_luci-theme-material=y
+CONFIG_PACKAGE_luci-theme-netgear=y
+CONFIG_PACKAGE_luci-theme-opentomato=y
+CONFIG_PACKAGE_luci-theme-opentomcat=y
+CONFIG_PACKAGE_luci-theme-opentopd=y
+CONFIG_PACKAGE_luci-theme-rosy=y
 ## remove
 # CONFIG_UnblockNeteaseMusic_NodeJS is not set
+# CONFIG_PACKAGE_UnblockNeteaseMusic-Go is not set
 # CONFIG_PACKAGE_luci-app-webadmin is not set
+# CONFIG_PACKAGE_luci-app-accesscontrol is not set
+# CONFIG_PACKAGE_luci-app-ddns is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus is not set
+# CONFIG_PACKAGE_luci-app-unblockmusic is not set
+# CONFIG_PACKAGE_luci-app-vsftpd is not set
 ## others
 CONFIG_BRCMFMAC_SDIO=y
 CONFIG_LUCI_LANG_en=y
